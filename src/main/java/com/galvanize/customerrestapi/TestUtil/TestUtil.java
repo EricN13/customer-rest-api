@@ -20,4 +20,9 @@ public class TestUtil {
         return customer;
     }
 
+    public Customer addCustomer(Customer customer){
+        customers.add(customer);
+        return customer;
+    }
+
 }

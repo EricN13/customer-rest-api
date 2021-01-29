@@ -8,8 +8,14 @@ import java.util.List;
 
 @Repository
 public class CustomerRepository {
-    private TestUtil testUtil;
+
+    private TestUtil testUtil = new TestUtil();
+
     public List<Customer> getCustomers() {
         return TestUtil.getListOfCustomers();
+    }
+
+    public Customer addCustomer(Customer customer) {
+        return testUtil.addCustomer(customer);
     }
 }

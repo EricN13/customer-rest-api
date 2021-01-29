@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -18,5 +19,23 @@ public class CustomerService {
 
     public Customer getCustomerByID(String id) {
         return customerRepository.getCustomers().stream().filter(a->a.getId().equals(id)).collect(Collectors.toList()).get(0);
+    }
+
+    public Customer addCustomer(Customer customer) {
+        return this.customerRepository.addCustomer(customer);
+    }
+
+    public Customer updateCustomer(String customerId, Customer customer) throws Exception {
+        List<Customer> customers = this.customerRepository.getCustomers();
+        for(Customer cust : customers){
+            if(cust.getId().equalsIgnoreCase(customerId)){
+                customer.setId(cust.getId());
+                this.customerRepository.addCustomer(customer);
+            }
+            else{
+                throw new Exception("No such element with the provided ID");
+            }
+        }
+        return null;
     }
 }
