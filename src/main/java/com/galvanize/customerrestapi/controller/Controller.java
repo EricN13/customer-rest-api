@@ -33,4 +33,9 @@ public class Controller {
     public Customer updateExistingCustomer(@PathVariable String customerId,@RequestBody Customer customer) throws Exception {
         return this.service.updateCustomer(customerId,customer);
     }
+
+    @DeleteMapping("/{customerId}")
+    public Customer deleteExistingCustomerById(@PathVariable String customerId) throws Exception {
+        return this.service.deleteCustomerById(customerId);
+    }
 }

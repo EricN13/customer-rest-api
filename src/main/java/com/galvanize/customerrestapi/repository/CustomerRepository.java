@@ -18,4 +18,8 @@ public class CustomerRepository {
     public Customer addCustomer(Customer customer) {
         return testUtil.addCustomer(customer);
     }
+
+    public Customer deleteCustomerById(String customerId) throws Exception {
+        return testUtil.deleteCustomerById(customerId);
+    }
 }

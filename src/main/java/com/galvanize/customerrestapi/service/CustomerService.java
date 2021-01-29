@@ -28,14 +28,19 @@ public class CustomerService {
     public Customer updateCustomer(String customerId, Customer customer) throws Exception {
         List<Customer> customers = this.customerRepository.getCustomers();
         for(Customer cust : customers){
-            if(cust.getId().equalsIgnoreCase(customerId)){
-                customer.setId(cust.getId());
-                this.customerRepository.addCustomer(customer);
+            if(cust.getId().equals(customerId)){
+                customer.setId(customerId);
+                return  this.customerRepository.addCustomer(customer);
+
             }
             else{
-                throw new Exception("No such element with the provided ID");
+               throw new Exception("No customer with the provided ID");
             }
         }
         return null;
+    }
+
+    public Customer deleteCustomerById(String customerId) throws Exception {
+        return this.customerRepository.deleteCustomerById(customerId);
     }
 }

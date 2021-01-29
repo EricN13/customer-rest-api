@@ -25,4 +25,18 @@ public class TestUtil {
         return customer;
     }
 
+    public Customer deleteCustomerById(String customerId) throws Exception {
+        Customer removedCustomer = null;
+        for(Customer cust : getListOfCustomers()){
+            if(cust.getId().equals(customerId)){
+                removedCustomer = cust;
+                customers.remove(cust);
+                return removedCustomer;
+            }else{
+                throw new Exception("No customer with the provided ID");
+            }
+        }
+        return null;
+    }
+
 }

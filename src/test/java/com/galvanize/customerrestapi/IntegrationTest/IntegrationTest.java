@@ -61,8 +61,12 @@ public class IntegrationTest {
     @Test
     public void updateExistingCustomer() throws Exception {
 
-        Customer customer = TestUtil.getACustomer();
+        Customer customer = TestUtil.getListOfCustomers().get(0);
         String id = customer.getId();
+
+        //check the id
+        System.out.println(id);
+
         customer.setFirstName("Jonathan");
         customer.setAddress("Irving, Texas");
         customer.setPhoneNumber("8009008000");
@@ -81,6 +85,19 @@ public class IntegrationTest {
                 .andExpect(jsonPath("$.phoneNumber").value("8009008000"))
                 .andReturn();
 
+    }
+
+    @Test
+    public void deleteCustomerById() throws Exception {
+        Customer customer = TestUtil.getListOfCustomers().get(0);
+        String id = customer.getId();
+
+        mockMvc
+                .perform(delete("/api/customers" + id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName").value("Amir"))
+                .andExpect(jsonPath("$.lastName").value("Wondimu"))
+                .andReturn();
     }
 
 }
