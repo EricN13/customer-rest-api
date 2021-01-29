@@ -110,17 +110,26 @@ public class IntegrationTest {
                 .andReturn();
     }
 
-//    @Test
-//    public void deleteCustomerById() throws Exception {
-//        Customer customer = TestUtil.getListOfCustomers().get(0);
-//        String id = customer.getId();
-//
-//        mockMvc
-//                .perform(delete("/api/customers" + id))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.firstName").value("Amir"))
-//                .andExpect(jsonPath("$.lastName").value("Wondimu"))
-//                .andReturn();
-//    }
+    @Test
+    public void deleteCustomerById() throws Exception {
+
+        customer = new Customer("abel" , "sol","234234234","california");
+        String id = customer.getId();
+
+        ObjectMapper mapper = new ObjectMapper();
+        String postedJson = mapper.writeValueAsString(customer);
+
+        mockMvc
+                .perform(post("/api/customers")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(postedJson))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        mockMvc
+                .perform(delete("/api/customers/" + id))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
 
 }

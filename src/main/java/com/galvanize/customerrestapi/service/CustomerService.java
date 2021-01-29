@@ -26,7 +26,7 @@ public class CustomerService {
         return this.customerRepository.save(customer);
     }
 
-    public Customer updateCustomer(String customerId, Customer customer) throws Exception {
+    public Customer updateCustomer(String customerId, Customer customer) {
 
         Optional<Customer> customerData  = this.customerRepository.findById(customerId);
 
@@ -34,11 +34,12 @@ public class CustomerService {
             customer.setId(customerId);
             return this.customerRepository.save(customer);
         }else{
-            throw new Exception("No Customer with the provided ID");
+            return null;
         }
     }
 
-//    public Customer deleteCustomerById(String customerId) throws Exception {
-//        return this.customerRepository.deleteCustomerById(customerId);
-//    }
+
+    public void deleteCustomerById(String customerId) throws Exception {
+        this.customerRepository.deleteById(customerId);
+    }
 }
