@@ -39,26 +39,26 @@ private Controller controller;
         controller= new Controller();
     }
 
-    @Test
-    public void testGetAllCustomers() throws Exception {
-        when(service.getAllCustomers()).thenReturn(TestUtil.getListOfCustomers());
-
-        mockMvc.perform(get("/api/customers"))
-                .andExpect(status().is(200))
-                .andReturn();
-    }
-    @Test
-    public void testGetCustomerByID() throws Exception {
-        Customer customer= TestUtil.getACustomer();
-        String id=customer.getId();
-
-        when(service.getCustomerByID(any())).thenReturn(customer);
-
-        mockMvc.perform(get("/api/customers/"+id))
-                .andExpect(status().is(200))
-                .andExpect(jsonPath("firstName").value("Amir"))
-                .andReturn();
-    }
+//    @Test
+//    public void testGetAllCustomers() throws Exception {
+//        when(service.getAllCustomers()).thenReturn(TestUtil.getListOfCustomers());
+//
+//        mockMvc.perform(get("/api/customers"))
+//                .andExpect(status().is(200))
+//                .andReturn();
+//    }
+//    @Test
+//    public void testGetCustomerByID() throws Exception {
+//        Customer customer= TestUtil.getACustomer();
+//        String id=customer.getId();
+//
+//        when(service.getCustomerByID(any())).thenReturn(customer);
+//
+//        mockMvc.perform(get("/api/customers/"+id))
+//                .andExpect(status().is(200))
+//                .andExpect(jsonPath("firstName").value("Amir"))
+//                .andReturn();
+//    }
 
     @Test
     public void testAddCustomer() throws Exception {

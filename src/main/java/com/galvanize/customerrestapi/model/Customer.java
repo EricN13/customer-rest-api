@@ -1,12 +1,23 @@
 package com.galvanize.customerrestapi.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
+@Entity
 public class Customer {
+    @Id
+    @Column(name = "ID")
     private String id;
+    @Column(name = "FIRSTNAME")
     private String firstName;
+    @Column(name = "LASTNAME")
     private String lastName;
+    @Column(name = "PHONENUMBER")
     private String phoneNumber;
+    @Column(name = "ADDRESS")
     private String address;
 
     public Customer() {}
